@@ -1,0 +1,17 @@
+site_name: Science Camp 2024 - Tutorials
+site_url: ""
+use_directory_urls: false
+plugins: []
+
+nav:
+  - Home: index.md
+  - Machine Learning Tutorials: machine-learning/index.md
+  - IoT Tutorials: iot/index.md
+  - Dashboard Tutorials: dashboard/index.md
+
+theme:
+    name: material
+
+markdown_extensions:
+  - pymdownx.details
+
