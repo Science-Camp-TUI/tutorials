@@ -1,6 +1,6 @@
 
 # This user tutorial for the Science Camp 2024
 
-it is written in Markdown and you can create a simple HTML version using mkdocs.
+Tutorials are written in Markdown and you can create a simple HTML version using mkdocs.
  
-A rendered latest version can be found here: 
+The latest rendered version can be found here: https://science-camp-tui.github.io/tutorials/ 
