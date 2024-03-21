@@ -1,11 +1,14 @@
 site_name: Science Camp 2024 - Tutorials
-site_url: ""
+site_url: https://science-camp-tui.github.io/tutorials/
 use_directory_urls: false
 plugins: []
 
 nav:
   - Home: index.md
-  - Machine Learning Tutorials: machine-learning/index.md
+  - Machine Learning Tutorials: 
+    - Introduction: machine-learning/index.md
+    - Audio Processing: machine-learning/audio-processing.md
+    - Code-Snippets: machine-learning/code-snippets.md
   - IoT Tutorials: iot/index.md
   - Dashboard Tutorials: dashboard/index.md
 
