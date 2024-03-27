@@ -15,6 +15,9 @@ nav:
 
 theme:
     name: material
+    features:
+        - navigation.path
+        - toc.integrate  
 
 markdown_extensions:
   - pymdownx.details
