@@ -77,10 +77,10 @@ You will now write your first typical "Hello World" program.
 
 3. Define the main entry point into your program using the (partly weird line):
 
-    ```
+    ```python
     if __name__ == "__main__":
-        ...
     ```
+
     and call your `main` function from there. 
 
 4. Run the program by right-clicking `main.py` and select `Run 'main'`.
