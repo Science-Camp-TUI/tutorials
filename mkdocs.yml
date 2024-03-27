@@ -5,6 +5,7 @@ plugins: []
 
 nav:
   - Home: index.md
+  - Starter Tutorial: starter/index.md
   - Machine Learning Tutorials: 
     - Introduction: machine-learning/index.md
     - Audio Processing: machine-learning/audio-processing.md
@@ -17,4 +18,5 @@ theme:
 
 markdown_extensions:
   - pymdownx.details
+  - attr_list
 

@@ -10,15 +10,19 @@ In this year we are going to create the basic structure of a bird voice classifi
 
 Since birds usually occur in the wild, the system will be designed that (in theory) it may be used in the field. You will learn how to transmit your classification data via a long range transmission network. 
 
-Data is only as good as it is visualized. Therefore on the reception side of the transmission you will create a simple dashboard that visualizes your classifcation results in a web browser. 
+Data is only as good as it is visualized. Therefore on the reception side of the transmission you will create a simple dashboard that visualizes your classification results in a web browser. 
 
 The workshops cover three main parts:
+
+## Setup and main program
+
+[Starter Tutorial](./starter/index.md)
 
 ## Audio Processing & Machine Learning (aka AI)
 
 [Tutorial for machine learning software](./machine-learning/index.md)
 
-## IoT Communcation Hardware & Software
+## IoT Communication Hardware & Software
 
 [Tutorial for IoT implementation](./iot/index.md)
 
