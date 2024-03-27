@@ -9,18 +9,20 @@ In this lesson you will
 * Create a basic "Hello World" program and run it
 
 
-If you never used Python before it's recommended that you get familiar with the basic language features. Don't be afraid. It's a fairly simple computer programming language and good to learn. it will be fun!
+If you never used Python before it's recommended that you get familiar with the basic language features. Don't be afraid. It's a fairly simple computer programming language and good to learn. It will be fun!
 
 Some links to get started:
 
-* [Video Deutsch 10 min, Absolute Beginner, online editor](https://www.youtube.com/watch?v=9mmVa6O-hzQ){:target="_blank"}
+* [Video Deutsch 10 min, Absolute Beginner, online editor](https://www.youtube.com/watch?v=9mmVa6O-hzQ){:target="_blank"}[^1]
 
-* [Video Deutsch 60 min, Beginner, uses PyCharm](https://www.youtube.com/watch?v=362fjQdpFlc){:target="_blank"}
+* [Video Deutsch 60 min, Beginner, uses PyCharm](https://www.youtube.com/watch?v=362fjQdpFlc){:target="_blank"}[^1]
 
-* [Crashkurs Deutsch, 24 Videos Playlist, uses PyCharm](https://www.youtube.com/watch?v=oxXAb8IikHM&list=PL_pqkvxZ6ho3u8PJAsUU-rOAQ74D0TqZB){:target="_blank"}
+* [Crashkurs Deutsch, 24 Videos Playlist, uses PyCharm](https://www.youtube.com/watch?v=oxXAb8IikHM&list=PL_pqkvxZ6ho3u8PJAsUU-rOAQ74D0TqZB){:target="_blank"}[^1]
 
-* [Official reference tutorial, English](https://docs.python.org/3.11/tutorial/index.html){:target="_blank"}
-    
+* [Official reference tutorial, English](https://docs.python.org/3.11/tutorial/index.html){:target="_blank"}[^1]
+
+
+[^1]: Link leads to external resources. Neither TU Ilmenau no any other party involved in this tutorial are responsible for the content linked. 
 
 ## Lesson Steps
 

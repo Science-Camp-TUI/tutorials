@@ -21,6 +21,7 @@ theme:
 
 markdown_extensions:
   - attr_list
+  - footnotes
   - pymdownx.details
   - pymdownx.highlight:
       anchor_linenums: true
