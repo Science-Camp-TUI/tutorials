@@ -14,7 +14,7 @@ Data is only as good as it is visualized. Therefore on the reception side of the
 
 The workshops cover three main parts:
 
-## Setup and main program
+## Setup and Hello World!
 
 [Starter Tutorial](./starter/index.md)
 
