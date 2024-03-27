@@ -13,13 +13,13 @@ If you never used Python before it's recommended that you get familiar with the 
 
 Some links to get started:
 
-* [Video Deutsch 10min, Absolute Beginner, online editor](https://www.youtube.com/watch?v=9mmVa6O-hzQ)
+* [Video Deutsch 10min, Absolute Beginner, online editor](https://www.youtube.com/watch?v=9mmVa6O-hzQ){:target="_blank"}
 
-* [Video Deutsch 60min, Beginner, uses PyCharm](https://www.youtube.com/watch?v=362fjQdpFlc) 
+* [Video Deutsch 60min, Beginner, uses PyCharm](https://www.youtube.com/watch?v=362fjQdpFlc){:target="_blank"}
 
-* [Crashkurs Deutsch, 24 Videos Playlist, uses PyCharm](https://www.youtube.com/watch?v=oxXAb8IikHM&list=PL_pqkvxZ6ho3u8PJAsUU-rOAQ74D0TqZB)
+* [Crashkurs Deutsch, 24 Videos Playlist, uses PyCharm](https://www.youtube.com/watch?v=oxXAb8IikHM&list=PL_pqkvxZ6ho3u8PJAsUU-rOAQ74D0TqZB){:target="_blank"}
 
-* [Official reference tutorial, English](https://docs.python.org/3.11/tutorial/index.html)
+* [Official reference tutorial, English](https://docs.python.org/3.11/tutorial/index.html){:target="_blank"}
     
 
 ## Lesson Steps
