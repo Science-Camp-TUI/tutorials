@@ -9,7 +9,7 @@ The goal of this lesson is to
 * plot the signal of a chunk
 * save the signal to a file and listen to it 
 
-In order for you to get a feeling of how audio data is represented in a computer read the following section [^1].
+In order for you to get a feeling of how audio data is represented in a computer read the following section.
 
 
 ### Digital representation of audio data[^1]
