@@ -52,11 +52,11 @@ Now you are ready to start!
 
 3. Select your `birdnet-mini` project folder
 
-So your project is loaded but there is (probably) no Python interpreter assoicated with it. 
+So your project is loaded but there is (probably) no Python interpreter associated with it. 
 
 We've already installed a recent Python version for you on your workshop computer. We did not simply use the [standard installer](https://www.python.org/downloads/) which would be fine if you just do small projects and tutorials. If you start working on larger projects that use a lot of different Python packages you probably want to switch between different Python version and package (versions). This is called an environment. 
 
-A system that allows you to manage and easily switch different python environments is [Miniconda}(https://docs.anaconda.com/free/miniconda/index.html) which is already install at your computer. We even created an environment for you that you can use for this workshop. PyCharm support conda environments. 
+A system that allows you to manage and easily switch different python environments is [Miniconda}(https://docs.anaconda.com/free/miniconda/index.html) which is already install at your computer. We even created an environment for you that you can use for this workshop. PyCharm support Conda environments. 
 
 4. Select `File->Settings` form the PyCharm Menu
 
@@ -64,7 +64,7 @@ A system that allows you to manage and easily switch different python environmen
 
     ![PyCharm Icon](pictures/pycharm_interpreter.png){: style="width:750px"}
 
-6. Int the following dialogue select `Conda Environment` on the left side and tick `Use exisiting environment`. From the Dropdown menu select `birdnet-minimal-dev`
+6. In the following dialogue select `Conda Environment` on the left side and tick `Use exisiting environment`. From the Dropdown menu select `birdnet-minimal-dev`
 
 7. Confirm all Dialogues by clicking `OK`multiple times. 
 

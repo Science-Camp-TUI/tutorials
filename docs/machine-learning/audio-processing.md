@@ -14,7 +14,7 @@ In order for you to get a feeling of how audio data is represented in a computer
 
 ### Digital representation of audio data[^1]
 
-The way of a sound wave to a digtial representation is as follows:
+The way of a sound wave to a digital representation is as follows:
 
 1. **Sound Capture**: Sound waves from voices, instruments, or any audio source hit the microphone.
 
