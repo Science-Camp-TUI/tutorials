@@ -39,17 +39,61 @@ You'll find a more detailed introduction [here](https://woodandfirestudio.com/en
 
 ## Lesson Steps
 
-the file [test_1min.wav](./files/test_1min.wav){:target="_blank"} contains a one minute recording of bird sounds. 
+### Part 1 - Loading and saving audio
 
-1. Download the file [test_1min.wav](./files/test_1min.wav){:target="_blank"} and store it in your project folder under a new folder you name `testdata`:
+The file [test_1min.wav](./files/test_1min.wav){:target="_blank"} contains a one minute recording of bird sounds. 
+
+1. Download the file [test_1min.wav](./files/test_1min.wav){:target="_blank"} and store it in your project folder under a new folder you name `testdata`. 
+
+2. Create a file `audio.py` int the `birdnet-mini` folder. This will contain all your audio processing functions. Your directory shall now look like this:
 
     ```
     └───birdnet-mini
         ├───birdnet_mini
         │       main.py
+        |       audio.py
         │
         └───testdata
                 test_1min.wav
     ```
 
-2. Use the [`load`](https://librosa.org/doc/latest/generated/librosa.load.html#librosa.load){:target="_blank"}-function  from the Python package `librosa` to load the file in python. 
+
+3. In `audio.py` create a new function called `open_audio_file` with the following signature: 
+
+    ```python
+     def open_audio_file(path: str, sample_rate=48000, offset=0.0, duration=None): 
+    ```
+        
+    Use the [load function](https://librosa.org/doc/latest/generated/librosa.load.html#librosa.load){:target="_blank"} from the Python package librosa to load the file inside the function as **mono audio** and return the sample samples and the sample rate. 
+
+4. Write another function `save_signal` that takes a filename, a signal (samples) as arguments and uses the [write function](https://python-soundfile.readthedocs.io/en/0.11.0/#read-write-functions){:target="_blank"} from the soundfile package to write an audio signal to a wav file.
+
+5. Now go back to `main.py` import your two functions and test them by loading the test file `test_1min.wav` and save it again under a different name. Listen to the saved file! 
+
+6. Have a look on how the signal is stored as a numpy array. 
+
+
+### Part 2 - Splitting audio
+
+In order to process the audio by the machine learning model, we need to split it into chunks of a specific length.
+
+1. In the file `audio.py` Write a function `split_signal` that takes a signal and a chunk length as arguments and returns a list of chunks. The function signature may look like this:
+
+    ```python
+    def split_signal(signal: np.ndarray, rate:int, seconds:float, overlap: float, min_len:float) -> List[np.ndarray]:
+    ```
+
+    remember that your signal is stored as samples. Use [numpy indexing](https://numpy.org/doc/stable/user/basics.indexing.html){:target="_blank"} to split the signal into chunks of a specific length given in seconds. The overlap is sometimes used to make the result more robust. You may omit it if too complicated.
+
+2. (Optional) The signal may not always have a length to get an integer number of chunks. Test if the chunks is too short and if so, add random noise to the end of the signal to make it meet the requested length. You may use the numpy random function to create gaussian noise.  
+
+
+3. Return the chunks in a default python list.
+
+4. Test your function in `main.py` by loading the test file and splitting it into chunks of 3 seconds. 
+
+5. Now plot the signal of one of the chunks using the [matplotlib](https://matplotlib.org/stable/contents.html){:target="_blank"} package. The result for chunk 0 should look like this:
+
+    ![Signal Plot](./pictures/signal_plot.png)
+
+6. Notice, that the signals amplitude is oscillating between -1 and 1 which is a typical data representation for audio signals. Also notice, that the amplitude it rather small.
