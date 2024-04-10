@@ -2,7 +2,7 @@
 
 ## Audio Processing
 
-Load audio file with librosa:
+### Load audio file with librosa
 
 ```python
 def open_audio_file(path: str, sample_rate=48000, offset=0.0, duration=None):
@@ -23,7 +23,7 @@ def open_audio_file(path: str, sample_rate=48000, offset=0.0, duration=None):
     return sig, rate
 ```
 
-Save audio signal to file:
+### Save audio signal to file:
 
 ```python
 def open_audio_file(path: str, sample_rate=48000, offset=0.0, duration=None):
@@ -37,7 +37,7 @@ def open_audio_file(path: str, sample_rate=48000, offset=0.0, duration=None):
     sf.write(fname, sig, 48000, "PCM_16")
 ```
 
-Split audio signal into chunks:
+### Split audio signal into chunks
 
 ```python
 def split_signal(sig, rate, seconds, overlap, min_len):
@@ -71,10 +71,10 @@ def split_signal(sig, rate, seconds, overlap, min_len):
     return sig_splits
 ```` 
 
-
-Create noise:
+### Create noise
 
 ```python
+
 def noise(sig, shape, amount=None):
     """Creates noise.
 
@@ -101,9 +101,10 @@ def noise(sig, shape, amount=None):
     return result_noise.astype("float32")
 ```
 
-main function:
+### main function
 
 ```python
+
 def main():
     # load the sample chunks from file
     chunks = get_raw_audio_chunks_from_file(str(TEST_FILE_PATH))
@@ -126,4 +127,4 @@ def main():
 
     # save the first chunk to a file for listening inspection
     save_signal(chunks[0], "chunk.wav")
-    ```
+```
