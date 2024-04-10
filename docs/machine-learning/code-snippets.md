@@ -1,5 +1,7 @@
 # Code Snippets
 
+Code taken fully or in parts from the [BirdNet Analyzer project](https://github.com/kahst/BirdNET-Analyzer){:target="_blank"} under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License.
+
 ## Audio Processing
 
 ### Load audio file with librosa
@@ -23,7 +25,7 @@ def open_audio_file(path: str, sample_rate=48000, offset=0.0, duration=None):
     return sig, rate
 ```
 
-### Save audio signal to file:
+### Save audio signal to file
 
 ```python
 def open_audio_file(path: str, sample_rate=48000, offset=0.0, duration=None):
