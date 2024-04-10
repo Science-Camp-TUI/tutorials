@@ -64,16 +64,16 @@ The file [test_1min.wav](./files/test_1min.wav){:target="_blank"} contains a one
      def open_audio_file(path: str, sample_rate=48000, offset=0.0, duration=None): 
     ```
         
-    Use the [load function](https://librosa.org/doc/latest/generated/librosa.load.html#librosa.load){:target="_blank"} from the Python package librosa to load the file inside the function as **mono audio** and return the sample samples and the sample rate. 
+    Use the [load function](https://librosa.org/doc/latest/generated/librosa.load.html#librosa.load){:target="_blank"} from the Python package librosa to load the file inside the function as **mono audio** and return the sample samples and the sample rate. `offset` and `duration`  are important arguments, when files are too large to be loaded at once. they allow for loading only a part of the file.
 
 4. Write another function `save_signal` that takes a filename, a signal (samples) as arguments and uses the [write function](https://python-soundfile.readthedocs.io/en/0.11.0/#read-write-functions){:target="_blank"} from the soundfile package to write an audio signal to a wav file.
 
 5. Now go back to `main.py` import your two functions and test them by loading the test file `test_1min.wav` and save it again under a different name. Listen to the saved file! 
 
-6. Have a look on how the signal is stored as a numpy array. 
+6. Have a look on how the signal is stored as a [numpy array](https://numpy.org/doc/stable/reference/generated/numpy.array.html){:target="_blank"}. 
 
 
-### Part 2 - Splitting audio
+### Part 2 - Splitting audio and plotting the signal
 
 In order to process the audio by the machine learning model, we need to split it into chunks of a specific length.
 
@@ -85,8 +85,7 @@ In order to process the audio by the machine learning model, we need to split it
 
     remember that your signal is stored as samples. Use [numpy indexing](https://numpy.org/doc/stable/user/basics.indexing.html){:target="_blank"} to split the signal into chunks of a specific length given in seconds. The overlap is sometimes used to make the result more robust. You may omit it if too complicated.
 
-2. (Optional) The signal may not always have a length to get an integer number of chunks. Test if the chunks is too short and if so, add random noise to the end of the signal to make it meet the requested length. You may use the numpy random function to create gaussian noise.  
-
+2. (Optional) The signal may not always have a length to get an integer number of chunks. Test if the chunks is too short and if so, add random noise to the end of the signal to make it meet the requested length. You may use the numpy random function to create gaussian noise. 
 
 3. Return the chunks in a default python list.
 
@@ -97,3 +96,8 @@ In order to process the audio by the machine learning model, we need to split it
     ![Signal Plot](./pictures/signal_plot.png)
 
 6. Notice, that the signals amplitude is oscillating between -1 and 1 which is a typical data representation for audio signals. Also notice, that the amplitude it rather small.
+
+
+7. (Optional) To get a better understanding of which frequencies are usually in the signal (over time), you may create a spectrogram of the signal using the [scipy- signal - module](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.spectrogram.html#scipy.signal.spectrogram){:target="_blank"} and plot it with matplotlib as well: 
+
+    ![Spectrogram](./pictures/signal_spectrogram_plot.png)
