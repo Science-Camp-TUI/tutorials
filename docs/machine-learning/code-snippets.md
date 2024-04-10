@@ -71,7 +71,7 @@ def split_signal(sig, rate, seconds, overlap, min_len):
         sig_splits.append(split)
 
     return sig_splits
-```` 
+``` 
 
 ### Create noise
 
