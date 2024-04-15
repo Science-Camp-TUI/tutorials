@@ -30,12 +30,13 @@ Some links to get started:
 
 1. Create a new project folder for your Songbird classification project: `birdnet-mini`
 2. Inside the folder create another folder called `birdnet_mini` (Notice the underscore!) this will be your Python package name.
-3. Inside the folder `birdnet_mini` create a file with the name `main.py`. This will be the main entry point to your program. Your project folder should now look like this:
+3. Inside the folder `birdnet_mini` create an empty file `__init__.py` and a file with the name `main.py` and a file . This will be the main entry point to your program. Your project folder should now look like this:
 
     ```
     └───birdnet-mini
         └───birdnet_mini
                 main.py
+                __init__.py
     ```
 
 ### Load your project into PyCharm and setup your project
@@ -64,7 +65,7 @@ A system that allows you to manage and easily switch different python environmen
 
     ![PyCharm Icon](pictures/pycharm_interpreter.png){: style="width:750px"}
 
-6. In the following dialogue select `Conda Environment` on the left side and tick `Use exisiting environment`. From the Dropdown menu select `birdnet-minimal-dev`
+6. In the following dialogue select `Conda Environment` on the left side and tick `Use existing environment`. From the Dropdown menu select `birdnet-minimal-dev`
 
 7. Confirm all Dialogues by clicking `OK`multiple times. 
 
