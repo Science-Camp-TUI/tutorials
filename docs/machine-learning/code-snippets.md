@@ -90,13 +90,15 @@ def noise(sig, shape, amount=None):
     Returns:
         An numpy array of noise with the given shape.
     """
+    rs = np.random.RandomState(42)
+
     # Random noise intensity
     if amount is None:
-        amount = RANDOM.uniform(0.1, 0.5)
+        amount = rs.uniform(0.1, 0.5)
 
     # Create Gaussian noise
     try:
-        result_noise = RANDOM.normal(min(sig) * amount, max(sig) * amount, shape)
+        result_noise = rs.normal(min(sig) * amount, max(sig) * amount, shape)
     except:
         result_noise = np.zeros(shape)
 
