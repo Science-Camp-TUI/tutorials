@@ -45,13 +45,14 @@ The file [test_1min.wav](./files/test_1min.wav){:target="_blank"} contains a one
 
 1. Download the file [test_1min.wav](./files/test_1min.wav){:target="_blank"} and store it in your project folder under a new folder you name `testdata`. 
 
-2. Create a file `audio.py` int the `birdnet-mini` folder. This will contain all your audio processing functions. Your directory shall now look like this:
+2. Create a file `audio.py` in the `birdnet_-_mini` folder. This will contain all your audio processing functions. Your directory shall now look like this:
 
     ```
     └───birdnet-mini
         ├───birdnet_mini
         │       main.py
         |       audio.py
+        |       __init__.py
         │
         └───testdata
                 test_1min.wav
