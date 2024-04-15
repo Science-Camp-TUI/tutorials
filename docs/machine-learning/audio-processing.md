@@ -50,8 +50,8 @@ The file [test_1min.wav](./files/test_1min.wav){:target="_blank"} contains a one
     ```
     └───birdnet-mini
         ├───birdnet_mini
-        │       main.py
         |       audio.py
+        │       main.py
         |       __init__.py
         │
         └───testdata
