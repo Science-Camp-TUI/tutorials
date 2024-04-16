@@ -11,7 +11,7 @@ nav:
     - Audio Processing: machine-learning/audio-processing.md
     - Bird Classification: machine-learning/bird-classification.md
     - Code-Snippets: machine-learning/code-snippets.md
-  - IoT Tutorials: iot/index.md
+  - IoT System Tutorial: system/index.md
   - Dashboard Tutorials: dashboard/index.md
  
 

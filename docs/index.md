@@ -18,13 +18,13 @@ The workshops cover three main parts:
 
 [Starter Tutorial](./starter/index.md)
 
-## Audio Processing & Machine Learning (aka AI)
+## Audio Processing & Machine Learning
 
 [Tutorial for machine learning software](./machine-learning/index.md)
 
-## IoT Communication Hardware & Software
+## IoT System
 
-[Tutorial for IoT implementation](./iot/index.md)
+[Tutorial for IoT System implementation](./system/index.md)
 
 ## Dashboard 
 
