@@ -1,6 +1,6 @@
 # Birdsong Classification
 
-In this lesson you will classify bird by their songs. The instructor will give you a short introduction to the topic of neural networks and machine learning. After that you will create the minimal code to run the classification.
+In this lesson you will classify bird by their songs. The instructor will give (or already gave) you a short introduction to the topic of neural networks and machine learning. After that you will create the minimal code to run the classification.
 
 
 ## Lesson Steps
