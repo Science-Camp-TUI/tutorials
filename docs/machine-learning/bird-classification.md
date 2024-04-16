@@ -52,7 +52,7 @@ A class is an abstract data type that defines a blueprint for objects. It contai
             return 1 / (1.0 + np.exp(sensitivity * np.clip(x, -15, 15)))
     ```
 
-4. The __init__ initializes the object and sets all important class members (in other languages this can be seen as a constructor).We will create the interpreter that is running the model. We use Tensorflow Lite, since this is also available on mini computers such as the RaspberryPi. Load the model file using the [tflite.Interpreter](https://www.tensorflow.org/api_docs/python/tf/lite/Interpreter){:target="_blank"} function and store the interpreter as the member variable `self._interpreter`.
+4. The `__init__` method initializes the object and sets all important class members (sometimes called a constructor). We will create the interpreter that is running the model. We use Tensorflow Lite, since this is also available on mini computers such as the RaspberryPi. Load the model file using the [tflite.Interpreter](https://www.tensorflow.org/api_docs/python/tf/lite/Interpreter){:target="_blank"} function and store the interpreter as the member variable `self._interpreter`.
 
 5. [Allocated the tensors](https://www.tensorflow.org/api_docs/python/tf/lite/Interpreter#allocate_tensors){:target="_blank"} for the interpreter an then retrieve [input and output information](https://www.tensorflow.org/api_docs/python/tf/lite/Interpreter#get_input_details){:target="_blank"} from the model and store it in the member variables         
 
