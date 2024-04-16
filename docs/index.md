@@ -1,4 +1,4 @@
-# TU Ilmenau ScienceCamp 2024 - Tutorial Pages
+# TU Ilmenau ScienceCamp 2024 - Workshop Tutorial Pages
 
 ## Introduction
 

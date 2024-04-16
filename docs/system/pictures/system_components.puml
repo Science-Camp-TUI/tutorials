@@ -1,0 +1,53 @@
+@startuml
+
+!pragma teoz true
+
+actor "User" as u
+
+box "Raspberry Pi" #LightBlue
+    participant "FileReader" as fr
+    queue "Sample Queue"  as sq
+    participant "Classifier"  as cfy
+    queue "Result Queue"  as rq
+    participant "SerialSender" as rt
+end box
+
+box "Raspberry Pico PCB" #LightGreen
+    participant "MiOTY Transmitter" as mt
+end box
+
+u->fr: start
+activate fr
+
+u->cfy: start
+activate cfy
+
+u->rt: start
+activate rt
+
+loop more files?
+    fr -> fr : read& chunk file
+    loop chunk_count
+        fr-> sq: enqeue chunk
+    end
+end
+
+loop not interrupted?
+    sq <- cfy : deqeue chunk
+    cfy -> cfy: classify chunk
+    cfy -> rq: enqeue prediction
+end
+
+loop not interrupted?
+    rq <- rt : deqeue prediction
+    rt -> rt : pack bytes
+    rt -> mt : send bytes on serial
+end
+
+
+destroy fr
+destroy cfy
+destroy rt
+
+
+@enduml

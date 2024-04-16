@@ -1,5 +1,5 @@
 
-# This user tutorial for the Science Camp 2024
+# Workshop tutorials for the Science Camp 2024
 
 Tutorials are written in Markdown and you can create a simple HTML version using mkdocs.
  
