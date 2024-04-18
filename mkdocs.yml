@@ -12,6 +12,7 @@ nav:
     - Bird Classification: machine-learning/bird-classification.md
     - Code-Snippets: machine-learning/code-snippets.md
   - IoT System Tutorial: system/index.md
+    - Code-Snippets: machine-learning/code-snippets.md
   - Dashboard Tutorials: dashboard/index.md
  
 
