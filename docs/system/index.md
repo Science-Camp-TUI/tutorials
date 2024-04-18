@@ -50,7 +50,7 @@ Before starting, download the file [SMM11597_20240330_151602.wav](./files/SMM115
 
 ### Part 1: The File Reader
 
-1. Create a file `file_reader.py` in the `birdnet_mini` folder. In this implement the `FileReader` class using the template from above.
+1. Create a file `file_reader.py` in the `birdnet_mini` folder. In this file, implement the `FileReader` class using the template from above.
 
 2. The `FileReader` class constructor shall receive 
 
@@ -75,20 +75,20 @@ Before starting, download the file [SMM11597_20240330_151602.wav](./files/SMM115
 
 ### Part 2: The Classifier
 
-1. Create a file `classifier.py` in the `birdnet_mini` folder. In this implement the `BirdClassifier` class using the template from above.
+1. Create a file `classifier.py` in the `birdnet_mini` folder. In this file, implement the `BirdClassifier` class using the template from above.
 
 
 2. The `BirdClassifier` class constructor shall receive 
 
     * an instance of the Model class you implemented in the previous lesson, 
     * the queue to receive the sample chunks and metadata from
-    * the queue to send the classification results to
+    * the queue to send the classification results to (result queue)
 
     Store these values in member variables (e.g. `self._model`).
 
 3. Implement the `run` method. In this method, create an loop that runs until `self._interrupted` is `True`. In this loop
 
-    * retrieve the next tuple of  `(chunk, timestamp, latitude, longitude)`. use the `Queue.get` method with a short timeout of `0.1` to retrieve the tuple [^3].
+    * retrieve the next tuple of  `(chunk, timestamp, latitude, longitude)`. Use the `Queue.get` method with a short timeout of `0.1` to retrieve the tuple [^3].
     * classify the chunk using the `Model.predict` method.
     * Store the result in a dictionary:
         ```python
@@ -105,14 +105,69 @@ Before starting, download the file [SMM11597_20240330_151602.wav](./files/SMM115
 
 ### Part 3: The Transmitter (Serial Sender)
 
-1. Create a file `transmission.py` in the `birdnet_mini` folder. In this implement the `SerialSender` class using the template from above.
+1. Create a file `transmission.py` in the `birdnet_mini` folder. In this file, implement the `SerialSender` class using the template from above.
+
+2. The `SerialSender` class constructor shall receive 
+
+    * the queue to read the classification results from (result queue)
+    * the serial port to be used  (e.g. `/dev/ttyUSB0` or `COM1`) to send the data to
+    * the serial baud rate to be used (e.g. `115200`). Set it to `115200` as default.
+    * an interval in seconds to when data shall be sent. This is important, since the the receiving Raspberry Pico can only handle a certain amount of data per second. Set it to `2` as default.
+
+3. Implement the `run` method. In this method, create an loop that runs until `self._interrupted` is `True`. In this loop
+
+    * retrieve the next classification result. Use the `Queue.get` method with a short timeout of `0.1` to retrieve the tuple [^3].
+    * Since we cannot send the whole dictionary (e.g. as Json) we need to pack the data as efficiently as possible. There only store the values of the dictionary in a list with the following order:
+        ````python
+        data_simple = [data_dict['class_id'], data_dict['confidence'],
+                           data_dict['lat'], data_dict['lon'], data_dict['timestamp'].timestamp()]
+        
+    * Now use the [Python struct package](https://docs.python.org/3/library/struct.html){:target="_blank"} to pack the data into a binary data. Use the format string `'Hfffd'` for the packing. 
+
+    * Send the packed data over the serial port. We use the [Python serial package](https://pyserial.readthedocs.io/en/latest/shortintro.html){:target="_blank"} to send the data.
+
+    * wait for the time interval before sending the next data.
+
+    * when the loop is interrupted, close the serial port.
 
 
 ### Part 4: Bringing it all together
 
+Now you have all the components ready. You can now modify you main file `main.py` in the `birdnet_mini` folder. 
+
+1. Import the classes `FileReader`, `BirdClassifier` and `SerialSender` from the respective files.
+
+2. Create instances of the classes and start them as threads.
+
+3. Create an endless loop waiting a short amount of time in each loop, that is surrounded by a code part catching user interrupts (e.g. pressing `Ctrl+C`):
+
+    ```python
+    try:
+        while True:
+            time.sleep(0.2)
+    except KeyboardInterrupt:
+        ...
+    ```
+4. when interrupted, stop the threads by calling the `interrupt` method of each component and join the threads using the `Thread.join` method.
 
 
-### Part 5: The Transmitter PCB
+### Part 5: The Transmitter PCB (optional)
+
+We use a Rapsberry Pico microcontroller connected via USB serial port. The Hardware is a custom layout create by the TU Ilmenau. I holds the Pico as well as the sending module. 
+
+![Raspberry Pico](./pictures/pico.jpg){width="40%"}
+
+The code for the microcontroller is written in C++ and pretty simple. However, adding it to this tutorial would be too much. The whole repository can be found [here](https://github.com/Science-Camp-TUI/TS-UNB-Lib-Pico) on the `science-camp` branch.
+
+
+### Part 6: Testing
+
+Connect the Raspberry Pico to your computer and start the Python program. You should see the data being sent to the Pico.
+
+
+### Part 7: Transfer to the Raspberry Pi
+
+Once tested successfully, the code needs to be transferred to the Raspberry Pi. You may zip it and copy it over. The instructor will guide you through the process of running the code on the Raspberry Pi.
 
 
 
