@@ -53,9 +53,9 @@ Now you are ready to start!
 
 3. Select your `birdnet-mini` project folder
 
-So your project is loaded but there is (probably) no Python interpreter associated with it. 
+So your project is loaded but there is probably no Python interpreter associated with it. 
 
-We've already installed a recent Python version for you on your workshop computer. We did not simply use the [standard installer](https://www.python.org/downloads/) which would be fine if you just do small projects and tutorials. If you start working on larger projects that use a lot of different Python packages you probably want to switch between different Python version and package (versions). This is called an environment. 
+We've already installed a recent Python version for you on your workshop computer. We did not simply use the [standard installer](https://www.python.org/downloads/) which would be fine if you just do small projects and tutorials. If you start working on larger projects that use a lot of different Python packages you probably want to switch between different Python versions and packages. This is called an environment. 
 
 A system that allows you to manage and easily switch different python environments is [Miniconda}(https://docs.anaconda.com/free/miniconda/index.html) which is already install at your computer. We even created an environment for you that you can use for this workshop. PyCharm support Conda environments. 
 
@@ -82,7 +82,7 @@ You will now write your first typical "Hello World" program.
 
 2. Now the task is up to you. Create a function called `main` in that file that prints "Hello World" and then returns 0
 
-3. Define the main entry point into your program using the (partly weird line):
+3. Define the main entry point into your program using the following line:
 
     ```python
     if __name__ == "__main__":
