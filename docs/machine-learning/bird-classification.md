@@ -8,7 +8,7 @@ In this lesson you will classify bird by their songs. The instructor will give (
 
 ### Part 1: Create a Model class
 
-We will now implement a Python class that is managing the bid classification model[^1]
+We will now implement a Python class that is managing the bird classification model[^1]
 
 A class is an abstract data type that defines a blueprint for objects. It contains attributes and methods that are shared by all objects of this class.
 
@@ -21,7 +21,7 @@ A class is an abstract data type that defines a blueprint for objects. It contai
     
     and store it in your package folder `birdnet_mini` under a new folder you name `models`. Also create an empty `__init__.py` file in the `models` folder.
 
-2. Create a file `model.py` in the `birdnet_mini` folder. This will contain all your model class. Your directory shall now look like this:
+2. Create a file `model.py` in the `birdnet_mini` folder. This will contain all your model class. Your directory should now look like this:
 
     ```
     └───birdnet-mini
@@ -53,9 +53,9 @@ A class is an abstract data type that defines a blueprint for objects. It contai
             return 1 / (1.0 + np.exp(sensitivity * np.clip(x, -15, 15)))
     ```
 
-4. The `__init__` method initializes the object and sets all important class members (sometimes called a constructor). We will create the interpreter that is running the model. We use Tensorflow Lite, since this is also available on mini computers such as the RaspberryPi. Load the model file using the [tflite.Interpreter](https://www.tensorflow.org/api_docs/python/tf/lite/Interpreter){:target="_blank"} function and store the interpreter as the member variable `self._interpreter`.
+4. The `__init__` method initializes the object and sets all important class members, this is usually called constructor. We will create the interpreter that is running the model. We use Tensorflow Lite, since this is also available on mini computers such as the RaspberryPi. Load the model file using the [tflite.Interpreter](https://www.tensorflow.org/api_docs/python/tf/lite/Interpreter){:target="_blank"} function and store the interpreter as the member variable `self._interpreter`.
 
-5. [Allocated the tensors](https://www.tensorflow.org/api_docs/python/tf/lite/Interpreter#allocate_tensors){:target="_blank"} for the interpreter an then retrieve [input and output information](https://www.tensorflow.org/api_docs/python/tf/lite/Interpreter#get_input_details){:target="_blank"} from the model and store it in the member variables         
+5. [Allocate the tensors](https://www.tensorflow.org/api_docs/python/tf/lite/Interpreter#allocate_tensors){:target="_blank"} for the interpreter an then retrieve [input and output information](https://www.tensorflow.org/api_docs/python/tf/lite/Interpreter#get_input_details){:target="_blank"} from the model and store it in the member variables         
 
     * `self._input_layer_index`
     * `self._output_layer_index`
@@ -68,4 +68,4 @@ A class is an abstract data type that defines a blueprint for objects. It contai
     * retrieve the result tensor via the [get_tensor](https://www.tensorflow.org/api_docs/python/tf/lite/Interpreter#get_tensor){:target="_blank"} function
     * apply the sigmoid function `self._flat_sigmoid` to the result tensor and return the result (). 
 
-7. Now it it time to test your model. In the `main.py` file import the `Model` class and create an instance of it. Load the test file and split it into chunks of 3 seconds. Then predict the class of the first chunk and print the results. 
+7. Now it is time to test your model. In the `main.py` file import the `Model` class and create an instance of it. Load the test file and split it into chunks of 3 seconds. Then predict the class of the first chunk and print the results. 
