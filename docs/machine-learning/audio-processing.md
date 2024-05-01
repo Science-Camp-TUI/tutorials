@@ -14,7 +14,7 @@ In order for you to get a feeling of how audio data is represented in a computer
 
 ### Digital representation of audio data[^1]
 
-The way of a sound wave to a digital representation is as follows:
+The jounrey from a physical sound wave to its digital representation is as follows:
 
 1. **Sound Capture**: Sound waves from voices, instruments, or any audio source hit the microphone.
 
@@ -69,9 +69,9 @@ The file [test_1min.wav](./files/test_1min.wav){:target="_blank"} contains a one
 
 4. Write another function `save_signal` that takes a filename, a signal (samples) as arguments and uses the [write function](https://python-soundfile.readthedocs.io/en/0.11.0/#read-write-functions){:target="_blank"} from the soundfile package to write an audio signal to a wav file.
 
-5. Now go back to `main.py` import your two functions and test them by loading the test file `test_1min.wav` and save it again under a different name. Listen to the saved file! 
+5. Now go back to `main.py`, import your two functions and test them by loading the test file `test_1min.wav` and save it again under a different name. Listen to the saved file! 
 
-6. Have a look on how the signal is stored as a [numpy array](https://numpy.org/doc/stable/reference/generated/numpy.array.html){:target="_blank"}. 
+6. Have a look at how the signal is stored as a [numpy array](https://numpy.org/doc/stable/reference/generated/numpy.array.html){:target="_blank"}. 
 
 
 ### Part 2 - Splitting audio and plotting the signal
@@ -84,9 +84,9 @@ In order to process the audio by the machine learning model, we need to split it
     def split_signal(signal: np.ndarray, rate:int, seconds:float, overlap: float, min_len:float) -> List[np.ndarray]:
     ```
 
-    remember that your signal is stored as samples. Use [numpy indexing](https://numpy.org/doc/stable/user/basics.indexing.html){:target="_blank"} to split the signal into chunks of a specific length given in seconds. The overlap is sometimes used to make the result more robust. You may omit it if too complicated.
+    Remember that your signal is stored as samples. Use [numpy indexing](https://numpy.org/doc/stable/user/basics.indexing.html){:target="_blank"} to split the signal into chunks of a specific length given in seconds. The overlap is sometimes used to make the result more robust. You may omit it if that's too complicated.
 
-2. (Optional) The signal may not always have a length to get an integer number of chunks. Test if the chunks is too short and if so, add random noise to the end of the signal to make it meet the requested length. You may use the numpy random function to create gaussian noise. 
+2. (Optional) The signal may not always have a length to get an integer number of chunks. Test if the chunks are too short and if so, add random noise to the end of the signal to make it meet the requested length. You may use the numpy random function to create gaussian noise. 
 
 3. Return the chunks in a default python list.
 
