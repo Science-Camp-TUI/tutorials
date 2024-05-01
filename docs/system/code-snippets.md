@@ -1,6 +1,6 @@
 # Code Snippets
 
-Here are some code snippet from the system tutorial.  The full code can be found in the the [birdnet-mini repository on GitHub](https://github.com/Science-Camp-TUI/birdnet-mini){:target="_blank"}.
+Here are some code snippets from the system tutorial.  The full code can be found in the the [birdnet-mini repository on GitHub](https://github.com/Science-Camp-TUI/birdnet-mini){:target="_blank"}.
 
 
 ## File Reader - run method
