@@ -2,7 +2,7 @@
 
 ## Introduction
 
-You are going to develop a small Python packages that runs on a mini computer located in the wilderness.
+You are going to develop a small Python package that runs on a mini computer located in the wilderness.
 
 The core functionalities of the program are:
  
