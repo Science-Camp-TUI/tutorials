@@ -11,10 +11,7 @@ In this lesson you will
 We have already set up a basic Grafana Instance on the same server the database storing the data lies on. This includes adding the database holding all the collected data as a data souce so that you can directly start creating a dashboard.
 
 
-## Lesson steps
-
-### Log into the Grafana instance 
-
+## Lesson steps 
 
 ### Creating a dashboard
 1. Connect to the Grafana server using the following link [http://141.24.194.106:20203](http://141.24.194.106:20203)
