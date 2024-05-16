@@ -157,3 +157,5 @@ Now that you have some basic knowlege about writing queues you can add visualisa
 - Add a filter for the different meassurement locations
    - All already mentioned things but filterd for the station
 - And a lot more...
+
+If you need help you can always ask the instructor. A helpful ressource is the [flux documentation](https://docs.influxdata.com/flux/v0/) for general questions.
