@@ -113,5 +113,47 @@ In the last task we had the problem that the measurements in the DB only holds t
        as: (l, r) => ({l with name: r.GermanName, _value: l._value}),
    )
    ```
-7. 
-      
+7. The only things left to do is clarifying what data to show and to sort that data. We can do this by removing all colums that are unnessisary and keeping only the `name` and the `_value` colums of our `join` result `res` and sorting after that. Your query code should look like this.
+   ```
+   import "csv"
+   import "experimental/http"
+   import "join"
+   
+   
+   csvData = string(v: http.get(url: "https://raw.githubusercontent.com/Science-Camp-TUI/birdnet-mini/main/idToLables.csv").body)
+   right=csv.from(csv: csvData, mode: "raw")
+   
+   
+   left=from(bucket: "BirdData")
+     |> range(start: v.timeRangeStart, stop:v.timeRangeStop)
+     |> filter(fn: (r) => r._value > ${minConf},)
+     |> group(columns: ["birdId"])
+     |> count()
+     |> group()
+     |> sort(desc: true)
+   
+   
+   
+   res=join.left(
+       left: left,
+       right: right,
+       on: (l, r) => l.birdId == r.BirdID,
+       as: (l, r) => ({l with name: r.GermanName, _value: l._value}),
+   )
+   
+   res
+   |> keep(columns: ["name", "_value"])
+   |> sort(desc: true)
+   ```
+9. You can customize the visualization. Dont forget to save once you're done. 
+
+### Free working
+Now that you have some basic knowlege about writing queues you can add visualisations for other stats you think are important freely. Some possible examples are
+ - What is the relation between the detected bird species(Pie chart)
+ - Add a filter for a specific bird type
+   - How often was the selected bird detected(Stat)
+   - At what times over the day was the bird detected(Time series)
+   - Where was the bird detected(Geomap)
+- Add a filter for the different meassurement locations
+   - All already mentioned things but filterd for the station
+- And a lot more...
