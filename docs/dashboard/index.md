@@ -85,3 +85,129 @@ Another interesting stat would be what birds were recognized the most. Lets add 
 7. On the right side under `Value options` change `Calculate` to `All values`
 8. You can customise the visualization if you want. For example changing the orientation to horizontal makes it easier to understand. Dont forget to save once your done.
 9. As you might have noticed, instead of bird names the bars are labled with the IDs. This is due to way the data is stored in the database. For now its fine, but if you're insterested you can check [here](https://github.com/Science-Camp-TUI/birdnet-mini/blob/main/idToLables.csv) which ID belongs to which bird.
+
+### Accesing a external ressource/Adding lables
+In the last task we had the problem that the measurements in the DB only holds the IDs of the classified bird, but not the actual name. But fortunatly we have a table holding the IDs and corresponding names. In this step we want to load the data into the query and modify the result form the last task in a way that the bars are labeld with the actual name rather than the Id.
+1. First, reopen the visualization by hovering the cursor over the diagramm, clicking the three dots in the upper right corner and selecting `edit`
+2. Bind the current query result to a variable. You can do this by choosing a name(we will use `left` since we will perform a left join later but any name is valid) and writing `name=` in front of the `from(bucket: "BirdData")`.
+3. Next add the following three lines at the top of the query. These packages provide the functions to load and transform the table from earlier into a flux query object
+   ```flux
+   import "csv"
+   import "experimental/http"
+   import "join"
+   ```
+4. Now we first need to load the csv using the following line. This simply performs a `HTTP get` request to github to the same ressource that is linked to earlier. (You might notice that the links aren't identical. This is due to github usually providing a visualy enhanced file. But since we need the raw data we access that in this querry directly. If you're curious you can open the link from the sample to see the raw data yourself)
+   ```flux
+   csvData = string(v: http.get(url: "https://raw.githubusercontent.com/Science-Camp-TUI/birdnet-mini/main/idToLables.csv").body)
+   ```
+5. For now the csvData variable only holds the data as a string(basically a long line of characters). To transform this to a proper flux query object we need to parse it. Fortunatly there is a laready defined function for that in the `csv`-packge we imported earlier. Add the following line to your code. Note that we bind the result to the variable `right` as the second part of our join operation.
+   ```flux
+   right=csv.from(csv: csvData, mode: "raw")
+   ```
+6. Now that the lable data is loaded and parsed we can combine it with our earlier result. To do that we need to perform a `left join` on the earlier result. Just copy the code below into your query. 
+   ```flux
+    res=join.left(
+       left: left,
+       right: right,
+       on: (l, r) => l.birdId == r.BirdID,
+       as: (l, r) => ({l with name: r.GermanName, _value: l._value}),
+   )
+   ```
+   What is a `join`? A `join` is a data operation where usually two tables get combined into one. There are essentially three types of `join`, `full join/ outer join`, `left/right outer join` and `inner join`.
+   A `full join` is when every entry from the first table is connected with every entry from the second table resulting in all possible combinations.
+      <table>
+      <tr><th>First </th><th>Second</th><th>Result</th></tr>
+      <tr><td>
+         
+      |Name| ID |
+      |--|--|
+      |a| 1|
+      |b| 2|
+      |c| 2|
+      |d| 3|
+      
+      </td><td>
+      
+      |Name| ID |
+      |--|--|
+      |e| 1|
+      |f| 2|
+      
+      </td><td>
+      
+      |First.Name| First.ID |Second.Name| Second.ID |
+      |--|--|--|--|
+      |a| 1|e| 1|
+      |b| 2|e| 1|
+      |c| 2|e| 1|
+      |d| 3|e| 1|
+      |a| 1|f| 2|
+      |b| 2|f| 2|
+      |c| 2|f| 2|
+      |d| 3|f| 2|
+   
+      </td></tr> 
+      </table>
+      
+   An `inner join` is when every is when every entry from the first table gets combined with every entry of the second table that matches some condition, usually that the value of a specific field of the first entry is the same as the value of a specific field of the second entry. Entries from the first table for which no matching entry from the second table can be found get deleted.
+      <table>
+      <tr><th>First </th><th>Second</th><th>Result</th></tr>
+      <tr><td>
+         
+      |Name| ID |
+      |--|--|
+      |a| 1|
+      |b| 2|
+      |c| 2|
+      |d| 3|
+      
+      </td><td>
+      
+      |Name| ID |
+      |--|--|
+      |e| 1|
+      |f| 2|
+      
+      </td><td>
+      
+      |First.Name| ID |Second.Name| 
+      |--|--|--|
+      |a| 1| e|
+      |b| 2| f|
+      |c| 2| f|
+   
+      </td></tr> 
+      </table>
+
+   An `left/right join` is the same as an `inner join`, but entries from the first(`left join`) or the second(`right join`) table dont get geleted even if no match is found for them.
+      <table>
+      <tr><th>First </th><th>Second</th><th>Result</th></tr>
+      <tr><td>
+         
+      |Name| ID |
+      |--|--|
+      |a| 1|
+      |b| 2|
+      |c| 2|
+      |d| 3|
+      
+      </td><td>
+      
+      |Name| ID |
+      |--|--|
+      |e| 1|
+      |f| 2|
+      
+      </td><td>
+      
+      |First.Name| ID |Second.Name| 
+      |--|--|--|
+      |a| 1| e|
+      |b| 2| f|
+      |c| 2| f|
+      |d| e|  |
+   
+      </td></tr> 
+      </table>
+7. 
+      
