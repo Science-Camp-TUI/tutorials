@@ -49,7 +49,7 @@ A class is an abstract data type that defines a blueprint for objects. It contai
             raise NotImplementedError
             
         @staticmethod
-        def _flat_sigmoid(x, sensitivity=1.0):
+        def _flat_sigmoid(x, sensitivity=-1.0):
             return 1 / (1.0 + np.exp(sensitivity * np.clip(x, -15, 15)))
     ```
 
