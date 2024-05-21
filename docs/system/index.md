@@ -46,7 +46,13 @@ The main things to considers during this lessons are:
 
 * how can we interrupt the main loops of each component.  **This is important because it gives the user the possibility to stop the program before finishing.**
 
-Before starting, download the file [SMM11597_20240330_151602.wav](./files/SMM11597_20240330_151602.wav){:target="_blank"} and copy it into a new folder `real_data` in your project folder. We will use the folder in all steps of this tutorial.
+Before starting, download the files 
+
+* [SMM11597_20240330_151602.wav](./files/SMM11597_20240330_151602.wav){:target="_blank"} 
+
+* [SMM11597_Summary.txt](./files/SMM11597_Summary.txt){:target="_blank"} 
+
+and copy them into a new folder `real_data` in your project folder. We will use the folder in all steps of this tutorial.
 
 ### Part 1: The File Reader
 
