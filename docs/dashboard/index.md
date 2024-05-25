@@ -109,7 +109,7 @@ In the last task we had the problem that the measurements in the DB only holds t
    ```flux
       right=csv.from(csv: csvData, mode: "raw")
    ```
-8. Now that the label data is loaded and parsed we can combine it with our earlier result. To do that we need to perform a `left join` on the earlier result. Just copy the code below into your query. You can read [this](join.html) if you don't know what a `join` is.
+8. Now that the label data is loaded and parsed we can combine it with our earlier result. To do that we need to perform a `left join` on the earlier result. Just copy the code below into your query. You can read [this](join.md) if you don't know what a `join` is.
    ```flux
       res=join.left(
           left: left,
