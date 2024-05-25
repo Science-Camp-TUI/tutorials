@@ -71,8 +71,7 @@ While the raw data might be useful, what we want from a dashboard is seeing impo
      |> filter(fn: (r) => r._value > ${minConf},)
      |> group(columns: [])
      |> count()
-   ```
-   
+   ``` 
 4. Name the visualization, apply and save.
 
 Another interesting stat would be what birds were recognized the most. Lets add a visualization for that. 
@@ -98,7 +97,7 @@ Another interesting stat would be what birds were recognized the most. Lets add 
 9. You can customise the visualization if you want. For example changing the orientation to horizontal makes it easier to understand. Dont forget to save once your done.
 10. As you might have noticed, instead of bird names the bars are labled with the IDs. This is due to way the data is stored in the database. For now its fine, but if you're insterested you can check [here](https://github.com/Science-Camp-TUI/birdnet-mini/blob/main/idToLables.csv) which ID belongs to which bird.
 
-### Accesing a external ressource/Adding lables
+### Accesing an external ressource/Adding lables
 In the last task we had the problem that the measurements in the DB only holds the IDs of the classified bird, but not the actual name. But fortunatly we have a table holding the IDs and corresponding names. In this step we want to load the data into the query and modify the result form the last task in a way that the bars are labeld with the actual name rather than the Id.
 1. First, reopen the visualization by hovering the cursor over the diagramm, clicking the three dots in the upper right corner and selecting `edit`
 2. Bind the current query result to a variable. You can do this by choosing a name(we will use `left` since we will perform a left join later but any name is valid) and writing `name=` in front of the `from(bucket: "BirdData")`.
