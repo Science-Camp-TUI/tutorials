@@ -16,6 +16,9 @@ The following sequence diagram shows the systems data flow and the components th
 
 ![System Architecture](./pictures/system_components.svg)
 
+The following components have already been set up by us and are only shown here for the sake of completeness, of the components shown you will only work with Grafana during the dashboard tutorial.
+
+![System Architecture](./pictures/communication_components.svg)
 
 ## Lessons Steps
 
@@ -136,6 +139,36 @@ and copy them into a new folder `real_data` in your project folder. We will use 
 
     * when the loop is interrupted, close the serial port.
 
+### Party 3b: Transmitting directly to the MQTT broker
+
+Due to some limitations of the Mioty system, it is helpful for you to send the data directly to the MQTT broker instead of sending it via the serial port and the antenna. For this reason, we will also create an MQTT sender class. 
+
+1. Create a file `transmissionMQTT.py` in the `birdnet_mini` folder. In this file, implement the `MQTTSender` class using the template from above.
+
+2. The `MQTTSender` class constructor shall receive 
+
+    * the queue to read the classification results from (result queue)
+    * an interval in seconds to when data shall be sent. We keep this parameter in order to change the overall system as little as possible, and unlike the port and baud rate, this parameter also has an effect on the behaviour of the broker.
+
+3. In the `__init__` create a MQTT client. We use the [paho-mqtt packet](https://pypi.org/project/paho-mqtt/), the required informations about the broker are in the moodle course.
+    * Since we use plain text credentials, it is recommended to bind them to variables in a separately created config.py, and to import only the config in this file.
+    * Use the client as a `self` variable. You will have to set username and password for the client as well as address and port of the broker
+4. Implement the `run` method. In this method, create a loop that runs until `self._interrupted` is `True`. In this loop
+
+    * retrieve the next classification result. Use the `Queue.get` method with a short timeout of `0.1` to retrieve the tuple [^3].
+    * Since we cannot send the whole dictionary (e.g. as Json) we need to pack the data as efficiently as possible. Store the values of the dictionary in a list with the following order:
+        ````python
+        data_simple = [data_dict['class_id'], data_dict['confidence'],
+                           data_dict['lat'], data_dict['lon'], data_dict['timestamp'].timestamp()]
+        ```` 
+    * Now use the [Python Struct Package](https://docs.python.org/3/library/struct.html){:target="_blank"} to pack the data into a binary data. Use the format string `'Hfffd'` for the packing. 
+
+    * Send the packed data over to the MQTT broker. Use `topicGroup<your group number>` as the topic. You can use the client function publish to do that.
+
+    * wait for the time interval before sending the next data.
+
+    * when the loop is interrupted, close the serial port.
+
 
 ### Part 4: Bringing it all together
 
@@ -168,7 +201,7 @@ The code for the microcontroller is written in C++ and pretty simple. However, a
 
 ### Part 6: Testing
 
-Connect the Raspberry Pico to your computer and start the python program. You should see the data being sent to the Pico.
+Connect the Raspberry Pico to your computer and start the python program. You should see the data being sent to the Pico. You can also monitor the mqtt broker, using [this python program](https://github.com/Science-Camp-TUI/mqtt-mini/blob/main/mqtt_client.py). If you are transmitting without the antenna you can use the same credentials for the mqtt broker, otherwise talk to an instuctor.
 
 
 ### Part 7: Transfer to the Raspberry Pi
@@ -176,6 +209,11 @@ Connect the Raspberry Pico to your computer and start the python program. You sh
 Once tested successfully, the code needs to be transferred to the Raspberry Pi. You may zip it and copy it over. The instructor will guide you through the process of running the code on the Raspberry Pi.
 
 
+### Part 8: Database interface (optional)
+
+If you are very fast and want to work on a separate task from this tutorial, you can try to implement the interface between mqtt and the InfluxDB yourself. But be sure to speak to a instructor first.
+
+What the program needs to accomplish is decoding the recieved data, labeling the seperate fields and send it to the database.
 
 [^1]: [Python Threads](https://docs.python.org/3/library/threading.html){:target="_blank"} are used to run multiple tasks concurrently. Threads are lighter than processes and share the same memory space. They are perfect for IO-bound tasks, such as reading from a file or sending data over a network. Please notice that python threads are not real system threads such as in programming languages like C++.
 
