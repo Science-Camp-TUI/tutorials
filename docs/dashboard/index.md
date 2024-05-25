@@ -23,18 +23,20 @@ We have already set up a basic Grafana Instance on the same server the database 
 ### Adding visualization
 1. Click `Add visualization`
 2. Select `influxdb` as the data source
-3. First we want to see just the raw data, so set the visualization type in the upper right corner to `Table`, set the time frame to `Last 2 years` and enter the following query
+3. First we want to see just the raw data, so set the visualization type in the upper right corner to `Table` and set the time frame to `Last 2 years`.
+4. Now enter the following query into the textform below
    ```flux
    from(bucket: "BirdData")
     |> range(start: v.timeRangeStart, stop:v.timeRangeStop)
     |> group(columns: [])
     |> limit(n:5)
    ```
-4. When your done click save, give your dashboard a name and click save again
+5. When your done click save, give your dashboard a name and click save again
 ![viewdata](pictures/viewData.jpg)
 
 ### Adding filters
 As you can see, the data contains the confidence value. Since the AI model doesn't have an output for `no bird detected` it will always classify some bird for every measurement. If there is indeed no bird in the sample it will usually show by a very low confidence. So it would be good to filter out entries with a confidence below a certain threshold.
+
 1. Go to the Dasboard settings(the gear at top right) and select the tab `Variables`
 2. Click `Add variable`
 3. Create a variable with the type `Custom`, give it a name(how you refere to the value in your querry, for example `minConf`), a lable(Name that will be displayed in the dashboard) and enter some boundaries in custom options(for example `0.9, 0.75, 0.5, 0.25, 0`).
@@ -54,6 +56,7 @@ As you can see, the data contains the confidence value. Since the AI model doesn
 
 ### Adding a proper visualization
 While the raw data might be useful, what we want from a dashboard is seeing important values with ease. So lets add a counter how many birds were recognised with the given confidence 
+
 1. Add another visualization, this time of the type `Stat`
 2. You can reuse the query from the filtered table
 3. Instead of limiting the number entries we want to count them. Replace the `limit` command with the count command. It sould look like this
@@ -67,6 +70,7 @@ While the raw data might be useful, what we want from a dashboard is seeing impo
 4. Name the visualization, apply and save.
 
 Another interesting stat would be what birds were recognized the most. Lets add a visualization for that. 
+
 1. Add another visualization. The are some type you can choose from, but this tutorial will use the `Bar gauge` (Hint: Select `Table` as the type to understand how the query looks after every step)
 2. For the query, we can use the first three lines from the filterd since that essentially just return all measurements that have the required confidence
 3. Next, we want to group all measurements that were of the same bird. We can do this by `|> group(columns: ["birdId"])`. This creates groups of measurements with the same `BirdID`. You can imagine a group as a simple table
@@ -149,6 +153,7 @@ In the last task we had the problem that the measurements in the DB only holds t
 
 ### Free working
 Now that you have some basic knowlege about writing queues you can add visualisations for other stats you think are important freely. Some possible examples are
+
  - What is the relation between the detected bird species(Pie chart)
  - Add a filter for a specific bird type
    - How often was the selected bird detected(Stat)
