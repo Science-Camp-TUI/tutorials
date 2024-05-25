@@ -16,7 +16,7 @@ nav:
     - Code-Snippets: system/code-snippets.md
   - Dashboard Tutorials: 
     - Dashboard Tutorial: dashboard/index.md
-    - Joins: dashboard/join.html
+    - Joins: dashboard/join.md
 
 theme:
     name: material
