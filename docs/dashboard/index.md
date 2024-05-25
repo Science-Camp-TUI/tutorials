@@ -118,7 +118,7 @@ In the last task we had the problem that the measurements in the DB only holds t
           as: (l, r) => ({l with name: r.GermanName, _value: l._value}),
       )
    ```
-10. The only things left to do is clarifying what data to show and to sort that data. We can do this by removing all colums that are unnessisary and keeping only the `name` and the `_value` colums of our `join` result `res` and sorting after that. Your query code should look like this.
+10. The only things left to do is clarifying what data to show and to sort that data. We can do this by removing all columns that are unnecessary and keeping only the `name` and the `_value` columns of our `join` result `res` and sorting after that. Your query code should look like this.
    ```flux
       import "csv"
       import "experimental/http"
