@@ -41,7 +41,7 @@ As you can see, the data contains the confidence value. Since the AI model doesn
 
 1. Go to the Dasboard settings(the gear at top right) and select the tab `Variables`.
 2. Click `Add variable`.
-3. Create a variable with the type `Custom`, give it a name(how you refere to the value in your querry, for example `minConf`), a lable(Name that will be displayed in the dashboard) and enter some boundaries in custom options(for example `0.9, 0.75, 0.5, 0.25, 0`).
+3. Create a variable with the type `Custom`, give it a name(how you refere to the value in your querry, for example `minConf`), a label(Name that will be displayed in the dashboard) and enter some boundaries in custom options(for example `0.9, 0.75, 0.5, 0.25, 0`).
 4. Click `Apply` and `Close` at the top right.
 5. Click `Add` at the top right and select `Visualization`.
 6. Select as visualization type again a `table` and copy the code from earlier.
@@ -95,10 +95,11 @@ Another interesting stat would be what birds were recognized the most. Lets add 
    
 8. On the right side under `Value options` change `Calculate` to `All values`
 9. You can customise the visualization if you want. For example changing the orientation to horizontal makes it easier to understand. Dont forget to save once your done.
-10. As you might have noticed, instead of bird names the bars are labled with the IDs. This is due to way the data is stored in the database. For now its fine, but if you're insterested you can check [here](https://github.com/Science-Camp-TUI/birdnet-mini/blob/main/idToLables.csv) which ID belongs to which bird.
+10. As you might have noticed, instead of bird names the bars are labled with the IDs. This is due to way the data is stored in the database. For now its fine, but if you're insterested you can check [here](https://github.com/Science-Camp-TUI/birdnet-mini/blob/main/idTolabels.csv) which ID belongs to which bird.
 
-### Accesing an external ressource/Adding lables
-In the last task we had the problem that the measurements in the DB only holds the IDs of the classified bird, but not the actual name. But fortunatly we have a table holding the IDs and corresponding names. In this step we want to load the data into the query and modify the result form the last task in a way that the bars are labeld with the actual name rather than the Id.
+### Accesing an external ressource/Adding labels
+In the last task we had the problem that the measurements in the DB only holds the IDs of the classified bird, but not the actual name. But fortunatly we have a table holding the IDs and corresponding names. In this step we want to load the data into the query and modify the result form the last task in a way that the bars are labled with the actual name rather than the ID.
+
 1. First, reopen the visualization by hovering the cursor over the diagramm, clicking the three dots in the upper right corner and selecting `edit`
 2. Bind the current query result to a variable. You can do this by choosing a name(we will use `left` since we will perform a left join later but any name is valid) and writing `name=` in front of the `from(bucket: "BirdData")`.
 3. Next add the following three lines at the top of the query. These packages provide the functions to load and transform the table from earlier into a flux query object
@@ -112,14 +113,14 @@ In the last task we had the problem that the measurements in the DB only holds t
 5. Now we first need to load the csv using the following line. This simply performs a `HTTP get` request to github to the same ressource that is linked to earlier. (You might notice that the links aren't identical. This is due to github usually providing a visualy enhanced file. But since we need the raw data we access that in this querry directly. If you're curious you can open the link from the sample to see the raw data yourself)
 
    ```flux
-   csvData = string(v: http.get(url: "https://raw.githubusercontent.com/Science-Camp-TUI/birdnet-mini/main/idToLables.csv").body)
+   csvData = string(v: http.get(url: "https://raw.githubusercontent.com/Science-Camp-TUI/birdnet-mini/main/idTolabels.csv").body)
    ```
    
 7. For now the csvData variable only holds the data as a string(basically a long line of characters). To transform this to a proper flux query object we need to parse it. Fortunatly there is a laready defined function for that in the `csv`-packge we imported earlier. Add the following line to your code. Note that we bind the result to the variable `right` as the second part of our join operation.
    ```flux
    right=csv.from(csv: csvData, mode: "raw")
    ```
-8. Now that the lable data is loaded and parsed we can combine it with our earlier result. To do that we need to perform a `left join` on the earlier result. Just copy the code below into your query. You can read [this](join.md) if you don't know what a `join` is.
+8. Now that the label data is loaded and parsed we can combine it with our earlier result. To do that we need to perform a `left join` on the earlier result. Just copy the code below into your query. You can read [this](join.md) if you don't know what a `join` is.
 
    ```flux
     res=join.left(
@@ -138,7 +139,7 @@ In the last task we had the problem that the measurements in the DB only holds t
    import "join"
    
    
-   csvData = string(v: http.get(url: "https://raw.githubusercontent.com/Science-Camp-TUI/birdnet-mini/main/idToLables.csv").body)
+   csvData = string(v: http.get(url: "https://raw.githubusercontent.com/Science-Camp-TUI/birdnet-mini/main/idTolabels.csv").body)
    right=csv.from(csv: csvData, mode: "raw")
    
    
