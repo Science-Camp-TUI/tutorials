@@ -59,19 +59,19 @@ While the raw data might be useful, what we want from a dashboard is seeing impo
 
 1. Add another visualization, this time of the type `Stat`
 2. You can reuse the query from the filtered table
-3. Instead of limiting the number entries we want to count them. Replace the `limit` command with the count command. It sould look like this
+3. Instead of limiting the number entries we want to count them. Replace the `limit` command with the count command. It sould look like this:
     ```flux
    from(bucket: "BirdData")
      |> range(start: v.timeRangeStart, stop:v.timeRangeStop)
      |> filter(fn: (r) => r._value > ${minConf},)
      |> group(columns: [])
      |> count()
-   ```
-4. Name the visualization, apply and save.
+   ``` 
+5. Name the visualization, apply and save.
 
 Another interesting stat would be what birds were recognized the most. Lets add a visualization for that. 
 
-1. Add another visualization. The are some type you can choose from, but this tutorial will use the `Bar gauge` (Hint: Select `Table` as the type to understand how the query looks after every step)
+1. Add another visualization. The are some types you can choose from, but this tutorial will use the `Bar gauge` (Hint: Select `Table` as the type to understand how the changes in the query effects the data every step)
 2. For the query, we can use the first three lines from the filterd since that essentially just return all measurements that have the required confidence
 3. Next, we want to group all measurements that were of the same bird. We can do this by `|> group(columns: ["birdId"])`. This creates groups of measurements with the same `BirdID`. You can imagine a group as a simple table
 4. Since we want to know how often each bird was detected we add `count()`. This counts the measurements in every group and replaces the group content with that value.
@@ -86,9 +86,9 @@ Another interesting stat would be what birds were recognized the most. Lets add 
      |> group()
      |> sort(desc: true)
    ```
-7. On the right side under `Value options` change `Calculate` to `All values`
-8. You can customise the visualization if you want. For example changing the orientation to horizontal makes it easier to understand. Dont forget to save once your done.
-9. As you might have noticed, instead of bird names the bars are labled with the IDs. This is due to way the data is stored in the database. For now its fine, but if you're insterested you can check [here](https://github.com/Science-Camp-TUI/birdnet-mini/blob/main/idToLables.csv) which ID belongs to which bird.
+8. On the right side under `Value options` change `Calculate` to `All values`
+9. You can customise the visualization if you want. For example changing the orientation to horizontal makes it easier to understand. Dont forget to save once your done.
+10. As you might have noticed, instead of bird names the bars are labled with the IDs. This is due to way the data is stored in the database. For now its fine, but if you're insterested you can check [here](https://github.com/Science-Camp-TUI/birdnet-mini/blob/main/idToLables.csv) which ID belongs to which bird.
 
 ### Accesing a external ressource/Adding lables
 In the last task we had the problem that the measurements in the DB only holds the IDs of the classified bird, but not the actual name. But fortunatly we have a table holding the IDs and corresponding names. In this step we want to load the data into the query and modify the result form the last task in a way that the bars are labeld with the actual name rather than the Id.
