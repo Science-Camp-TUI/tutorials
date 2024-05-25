@@ -65,7 +65,7 @@ A `join` is a data operation where usually two tables get combined into one. The
    </td></tr> 
    </table>
 
-   An `left/right join` is the same as an `inner join`, but entries from the first(`left join`) or the second(`right join`) table dont get geleted even if no match is found for them.
+   An `left/right join` is the same as an `inner join`, but entries from the first(`left join`) or the second(`right join`) table dont get deleted even if no match is found for them.
    <table>
    <tr><th>First </th><th>Second</th><th>Result</th></tr>
    <tr><td>
