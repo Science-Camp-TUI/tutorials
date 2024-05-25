@@ -118,7 +118,7 @@ In the last task we had the problem that the measurements in the DB only holds t
           as: (l, r) => ({l with name: r.GermanName, _value: l._value}),
       )
    ```
-10. The only things left to do is clarifying what data to show and to sort that data. We can do this by removing all columns that are unnecessary and keeping only the `name` and the `_value` columns of our `join` result `res` and sorting after that. Your query code should look like this.
+10. The only things left to do is clarifying what data to show and to sort that data. We can do this by removing all columns that are unnecessary and keeping only the `name` and the `_value` columns of our `join` result `result` and sorting after that. Your query code should look like this.
    ```flux
       import "csv"
       import "experimental/http"
@@ -158,8 +158,8 @@ Now that you have some basic knowlege about writing queues you can add visualisa
    - How often was the selected bird detected(Stat)
    - At what times over the day was the bird detected(Time series)
    - Where was the bird detected(Geomap)
-- Add a filter for the different meassurement locations
-   - All already mentioned things but filterd for the station
+- Add a filter for the different measurement locations
+   - All already mentioned things but filtered for the station
 - And a lot more...
 
 If you need help you can always ask the instructor. A helpful ressource is the [flux documentation](https://docs.influxdata.com/flux/v0/) for general questions.
