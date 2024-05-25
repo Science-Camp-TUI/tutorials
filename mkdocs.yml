@@ -15,7 +15,7 @@ nav:
     - System Components: system/index.md
     - Code-Snippets: system/code-snippets.md
   - Dashboard Tutorials: dashboard/index.md
-    - Joins: dashboard/join.md
+
 
 theme:
     name: material
