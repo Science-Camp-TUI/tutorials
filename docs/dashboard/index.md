@@ -6,7 +6,7 @@ In this lesson you will
 
 * Create a Grafana dashboard
 * Add visualizations based on the collected data
-* Filter the Data to represent secific informations
+* Filter the data to represent specific information
 
 We have already set up a basic Grafana Instance on the same server the database storing the data lies on. This includes adding the database holding all the collected data as a data souce so that you can directly start creating a dashboard.
 
