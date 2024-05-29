@@ -20,7 +20,7 @@ We have already set up a basic Grafana Instance on the same server the database 
 4. Click `New` on the right and then `New dashboard`.
 ![dashboardView](pictures/createDashboard.jpg)
 
-### Adding visualization
+### Adding a visualization
 1. Click `Add visualization`.
 2. Select `influxdb` as the data source.
 3. First we want to see just the raw data, so set the visualization type in the upper right corner to `Table` and set the time frame to `Last 2 years`.
