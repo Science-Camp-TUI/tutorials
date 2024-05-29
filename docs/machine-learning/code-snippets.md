@@ -2,6 +2,8 @@
 
 Code taken fully or in parts from the [BirdNet Analyzer project](https://github.com/kahst/BirdNET-Analyzer){:target="_blank"} under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License.
 
+The full code for this can be found [in this github repository](https://github.com/Science-Camp-TUI/birdnet-mini). All other code is grouped in [our github orga](https://github.com/orgs/Science-Camp-TUI/repositories).
+
 ## Audio Processing
 
 ### Load audio file with librosa
